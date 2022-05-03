@@ -1,0 +1,44 @@
+Given an integer n, return all the numbers in the range [1, n] sorted in lexicographical order.
+
+You must write an algorithm that runs in O(n) time and uses O(1) extra space. 
+
+ 
+
+Example 1:
+
+Input: n = 13
+Output: [1,10,11,12,13,2,3,4,5,6,7,8,9]
+Example 2:
+
+Input: n = 2
+Output: [1,2]
+ 
+
+Constraints:
+
+1 <= n <= 5 * 104
+
+
+
+--------code--------
+
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Integer> l = new ArrayList<>();
+		LexicoNums(0, 13, l);
+		System.out.println(l);
+	}
+	
+	public static void LexicoNums(int current, int end, List<Integer> l) {
+		if(current > end)
+			return;
+		if (current != 0)
+			l.add(current);
+		
+		int i = 0;
+		if(current == 0)
+			i = 1;
+		
+		for(; i <= 9; i++)
+			LexicoNums(current * 10 + i, end, l);
+	}
