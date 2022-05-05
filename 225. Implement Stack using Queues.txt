@@ -1,0 +1,53 @@
+public class MyStack {
+	public class node {
+		int data;
+		node next;
+	}
+	
+	node top;
+	
+	public MyStack() {
+		this.top = null;
+	}
+	
+	public void push(int x) {
+		node temp = new node();
+		temp.data = x;
+		
+		if(top == null) {
+			temp.next = null;
+			top = temp;
+		} else {
+			temp.next = top;
+			top = temp;
+		}
+		
+	}
+	
+	public int pop() {
+		int popped = top.data;
+		top = top.next;
+		return popped;
+	}
+	
+	public int top() {
+		int topElement = top.data;
+		return topElement;
+	}
+	
+	public boolean empty() {
+		if (top == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void display() {
+		node t = top;
+		while(t != null) {
+			System.out.println(t.data);
+			t = t.next;
+		}
+	}
+}
