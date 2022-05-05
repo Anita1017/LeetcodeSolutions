@@ -1,0 +1,26 @@
+class Solution {
+    public void reverseString(char[] s) {
+        String ss = "";
+		for(int i = 0; i < s.length; i++) {
+			ss += s[i];
+		}
+		
+        List<Character> l = new ArrayList<>();
+		
+		rev(ss,l);
+        
+        for(int i = 0; i < s.length; i++) {
+			s[i] = l.get(i);
+		}
+		
+    }
+    
+   public static void rev(String s, List<Character> l) {
+		
+		if(s.length() == 0)
+			return;
+		l.add(s.charAt(s.length()-1));
+		
+		rev(s.substring(0,s.length()-1), l);
+	}
+}
