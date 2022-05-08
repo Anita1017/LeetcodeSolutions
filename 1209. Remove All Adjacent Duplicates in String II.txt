@@ -1,0 +1,40 @@
+class Solution {
+    public String removeDuplicates(String s, int k) {
+        Stack<pair> st=new Stack<pair>();
+        st.push(new pair(s.charAt(0),1));
+        for(int i=1;i<s.length();i++){
+            if(!st.isEmpty() && s.charAt(i)==st.peek().a){
+                if(st.peek().count==k-1){
+                    st.pop();
+                }
+                else{
+                    st.peek().count=st.peek().count+1;
+                }
+            }
+            else{
+                st.push(new pair(s.charAt(i),1));
+            }
+        }
+        StringBuilder sb=new StringBuilder();
+        while(!st.isEmpty()){
+            pair p=st.pop();
+            char ans=p.a;
+            int c=p.count;
+            while(c!=0){
+                sb.append(ans);
+                c--;
+            }
+        }
+        
+        return sb.reverse().toString();
+    }
+    public class pair{
+        char a;
+        int count;
+        
+        public pair(char a, int count){
+            this.a=a;
+            this.count=count;
+        }
+    }
+}
