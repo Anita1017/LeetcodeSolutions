@@ -1,0 +1,46 @@
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        boolean [] choices = new boolean[10];
+		List<List<Integer>> lL = new ArrayList<List<Integer>>();
+		List<String> l = new ArrayList<>();
+		comb(k, n, choices, "", 0, 0,1,l);
+		
+		for(int i = 0; i < l.size(); i++) {
+			lL.add(convrt(l.get(i)));
+		}
+		
+        return lL;
+    }
+    
+    public static List<String> comb(int k, int n, boolean [] choices,String ans,int K, int N,int idx,                           List<String> l) {
+
+		if(k==K && n==N) {
+			//System.out.println(ans);
+			l.add(ans);
+		}
+		
+		for(int i = idx; i <= 9; i++) {
+			if(choices[i] == false) {
+				choices[i] = true;
+				comb(k, n, choices, ans+i, K+1, N+i,i+1,l);
+				choices[i] = false;
+
+			}
+			
+		}
+		
+		return l;
+		
+	}
+	
+	public static List<Integer> convrt(String s) {
+		List<Integer> res = new ArrayList<>();
+        for(int i = 0; i < s.length()-1; i++){
+            res.add(Integer.parseInt(s.substring(i, i+1)));
+        }
+        
+		res.add(Integer.parseInt(s.substring(s.length()-1)));
+		
+		return res;
+	}
+}

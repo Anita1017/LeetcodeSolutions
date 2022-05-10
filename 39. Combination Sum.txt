@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+		comb(result,new ArrayList<Integer>(),candidates, target, "", 0);
+		
+        return result;
+    }
+    
+    public static void comb(List<List<Integer>> result,List<Integer> lst,int [] candidates, int target,String ans,int idx) {
+		if(target == 0) {
+			//System.out.println(ans);
+			result.add(new ArrayList<Integer>(lst));
+			return;
+		}
+		
+		for(int i = idx; i < candidates.length; i++) {
+			if(target >= candidates[i]) {
+				lst.add(candidates[i]);
+				comb(result,lst,candidates, target-candidates[i], ans+candidates[i],i);
+				lst.remove(lst.size()-1);
+			}
+		}
+		
+	}
+}
