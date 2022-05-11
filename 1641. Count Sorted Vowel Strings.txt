@@ -1,0 +1,28 @@
+class Solution {
+    public int countVowelStrings(int n) {
+        char [] v = {'a','e','i','o','u'};
+		
+		int t = g(0, "", n, v,0);
+        return t;
+    }
+    public static int g(int currentCount, String ans, int n, char [] v,int idx) {
+		if(n==0)
+			return 0;
+		int x = 0;
+		if(currentCount > n)
+			return 0;
+		if(currentCount == n) {
+			//total += 1;
+			//System.out.println(ans);
+			return 1;
+		}
+			
+		for(int i=idx; i < v.length; i++) {
+			x += g(currentCount+1, ans+v[i], n, v,i);
+		}
+		
+		return x;
+		
+	}
+    
+}
